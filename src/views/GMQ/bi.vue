@@ -115,7 +115,7 @@
 </template>
 
 <script>
-import Axios from 'axios';
+import axios from 'axios';
 import bi2 from './components/bi2.vue';
 
 export default {
@@ -171,7 +171,7 @@ export default {
             let url = 'http://www.api.com/bi/5c527fc326ead?vYear=';
             url = url + vm.vYear + '&vJzdate=' + vm.vJzdate + '&hash=' + vm.hash;
             vm.data1 = [];
-            Axios.get(url).then(function (response) {
+            axios.get(url).then(function (response) {
                 // 获取数据
                 vDate = response.data.data;
                 vm.data1 = vDate;

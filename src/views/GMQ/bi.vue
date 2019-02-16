@@ -104,135 +104,136 @@
     </row>
     <!-- 弹出层 -->
     <Modal v-model="modal11"
-           fullscreen
            footer-hide
-           title="Fullscreen Modal">
-      <div>This is a fullscreen modal
-        <img src="http://10.10.1.32:8018/Images/sku/winter.jpg"
-             alt="">
-      </div>
+           scrollable>
+      <!-- fullscreen -->
+      <!-- title="Fullscreen Modal" -->
+      <bi2></bi2>
     </Modal>
+
   </div>
 </template>
 
 <script>
 import Axios from 'axios';
+import bi2 from './components/bi2.vue';
 
 export default {
-  name: 'bi_index',
-  components: {
-  },
-  data () {
-    return {
-      hash: '5c4d6dc93a515',
-      modal11: false,
-      vYear: '',
-      vJzdate: '',
-      loading: false,
-      columns1: [
-        {
-          title: '季节',
-          key: 'JI'
-        }, {
-          title: '发货量',
-          key: 'FHL'
+    name: 'bi_index',
+    components: {
+        bi2
+    },
+    data () {
+        return {
+            hash: '5c4d6dc93a515',
+            modal11: false,
+            vYear: '',
+            vJzdate: '',
+            loading: false,
+            columns1: [
+                {
+                    title: '季节',
+                    key: 'JI'
+                }, {
+                    title: '发货量',
+                    key: 'FHL'
+                },
+                {
+                    title: '补单量',
+                    key: 'BH'
+                },
+                {
+                    title: '补单%',
+                    key: 'BDL'
+                },
+                {
+                    title: '款数',
+                    key: 'KS'
+                }
+            ],
+            data1: [],
+            data37: [],
+            data38: [],
+            data39: [],
+            data40: []
+        };
+    },
+    created () {
+        this.getTime();
+    },
+    methods: {
+        toLoading () {
+            let vm = this;
+            let vDate = '';
+            let xuanran = this.xuanran;
+            // 加载
+            this.loading = !this.loading;
+            let url = 'http://www.api.com/bi/5c527fc326ead?vYear=';
+            url = url + vm.vYear + '&vJzdate=' + vm.vJzdate + '&hash=' + vm.hash;
+            vm.data1 = [];
+            Axios.get(url).then(function (response) {
+                // 获取数据
+                vDate = response.data.data;
+                vm.data1 = vDate;
+                // 渲染数据
+                xuanran(vDate);
+                // 去掉加载
+                vm.loading = !vm.loading;
+            }).catch(function (error) {
+                // 抛错
+                // eslint-disable-next-line no-console
+                console.log(error);
+                vm.$Message.error('请求错误，请看console');
+                vm.loading = !vm.loading;
+            });
         },
-        {
-          title: '补单量',
-          key: 'BH'
+        setJzdate (date) {
+            this.vJzdate = date;
         },
-        {
-          title: '补单%',
-          key: 'BDL'
+        setYear (Year) {
+            this.vYear = Year;
         },
-        {
-          title: '款数',
-          key: 'KS'
+        getTime () {
+            // 昨天的日期格式
+            this.vYear = this.$moment().subtract(1, 'days').format('YYYY');
+            this.vJzdate = this.$moment().subtract(1, 'days').format('YYYYMMDD');
+        },
+        xuanran (vDate) {
+            let xuanran41 = this.xuanran41;
+            xuanran41(vDate);
+        },
+        xuanran41 (data) {
+            this.data37 = [];
+            this.data38 = [];
+            this.data39 = [];
+            this.data40 = [];
+            if (data) {
+                for (let index = 0; index < data.length; index++) {
+                    if (data[index].SEASON_ID === '37') {
+                        this.data37.push(data[index]);
+                    } else if (data[index].SEASON_ID === '38') {
+                        this.data38.push(data[index]);
+                    } else if (data[index].SEASON_ID === '39') {
+                        this.data39.push(data[index]);
+                    } else if (data[index].SEASON_ID === '40') {
+                        this.data40.push(data[index]);
+                    }
+                }
+            }
         }
-      ],
-      data1: [],
-      data37: [],
-      data38: [],
-      data39: [],
-      data40: []
-    };
-  },
-  created () {
-    this.getTime();
-  },
-  methods: {
-    toLoading () {
-      let vm = this;
-      let vDate = '';
-      let xuanran = this.xuanran;
-      // 加载
-      this.loading = !this.loading;
-      let url = 'http://www.api.com/bi/5c527fc326ead?vYear=';
-      url = url + vm.vYear + '&vJzdate=' + vm.vJzdate + '&hash=' + vm.hash;
-      vm.data1 = [];
-      Axios.get(url).then(function (response) {
-        // 获取数据
-        vDate = response.data.data;
-        vm.data1 = vDate;
-        // 渲染数据
-        xuanran(vDate);
-        // 去掉加载
-        vm.loading = !vm.loading;
-      }).catch(function (error) {
-        // 抛错
-        // eslint-disable-next-line no-console
-        console.log(error);
-        vm.$Message.error('请求错误，请看console');
-        vm.loading = !vm.loading;
-      });
     },
-    setJzdate (date) {
-      this.vJzdate = date;
-    },
-    setYear (Year) {
-      this.vYear = Year;
-    },
-    getTime () {
-      // 昨天的日期格式
-      this.vYear = this.$moment().subtract(1, 'days').format('YYYY');
-      this.vJzdate = this.$moment().subtract(1, 'days').format('YYYYMMDD');
-    },
-    xuanran (vDate) {
-      let xuanran41 = this.xuanran41;
-      xuanran41(vDate);
-    },
-    xuanran41 (data) {
-      this.data37 = [];
-      this.data38 = [];
-      this.data39 = [];
-      this.data40 = [];
-      if (data) {
-        for (let index = 0; index < data.length; index++) {
-          if (data[index].SEASON_ID === '37') {
-            this.data37.push(data[index]);
-          } else if (data[index].SEASON_ID === '38') {
-            this.data38.push(data[index]);
-          } else if (data[index].SEASON_ID === '39') {
-            this.data39.push(data[index]);
-          } else if (data[index].SEASON_ID === '40') {
-            this.data40.push(data[index]);
-          }
+    computed: {
+        getDate (index) {
+            let vm = this.data1;
+            let data = [];
+            for (let j = 0; j < this.data1.length; j++) {
+                if (vm[j].SEASON_ID === index) {
+                    data.push(vm[j]);
+                }
+            }
+            return data;
         }
-      }
     }
-  },
-  computed: {
-    getDate (index) {
-      let vm = this.data1;
-      let data = [];
-      for (let j = 0; j < this.data1.length; j++) {
-        if (vm[j].SEASON_ID === index) {
-          data.push(vm[j]);
-        }
-      }
-      return data;
-    }
-  }
 };
 </script>
 

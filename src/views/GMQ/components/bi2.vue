@@ -11,9 +11,6 @@
                   :isOrder="item.isOrder"
                   :isSelect="item.isSelect"
                   :isSotype="item.isSotype"></v-header>
-        <!-- <div class="conents">
-          
-        </div> -->
         <v-conent class="conents"
                   :conent="item.label"></v-conent>
       </TabPane>
@@ -85,20 +82,16 @@ export default {
                     isSotype: false,
                     isCategory: false
                 }]
-
         };
     }
 };
 </script>
-
-
 
 <style lang="less" scoped>
 .conents {
   height: 100%;
   min-height: 300px;
   width: 100%;
-  background: rgb(148, 185, 255);
   margin-top: 5px;
 }
 </style>

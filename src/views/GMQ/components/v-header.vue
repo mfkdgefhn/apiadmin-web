@@ -1,9 +1,19 @@
 <template>
   <div>
-    <row :gutter="10"
+    <row :gutter="5"
          class="row-hear">
       <Card style="min-width:600px;">
         <div>
+          <row class="row-order">
+            <RadioGroup v-model="vOrder"
+                        type="button"
+                        size="small">
+              <Radio v-for="item in model5"
+                     :key="item.value"
+                     :label="item.label"></Radio>
+            </RadioGroup>
+          </row>
+
           <!-- 来源 -->
           <div v-if="isSotype"
                class="jiange">
@@ -95,21 +105,6 @@
             </DatePicker>
           </div>
 
-          <!-- 排序 -->
-          <div v-if="isOrder"
-               class="jiange">
-            <span>排序：</span>
-            <i-select :model.sync="model5"
-                      style="width:90px"
-                      placeholder="默认销量">
-              <i-option v-for="item in model5"
-                        :value="item.value"
-                        :key="item.value">
-                {{ item.label }}
-              </i-option>
-            </i-select>
-          </div>
-
           <!-- <span class="jiange">模糊搜索：</span> -->
           <div v-if="isSelect"
                class="jiange">
@@ -118,7 +113,6 @@
                    clearable
                    style="width: 100px" />
           </div>
-
           <!-- 搜索 -->
           <Button class="jiange"
                   type="primary"
@@ -168,6 +162,7 @@ export default {
     },
     data () {
         return {
+            vOrder: '按销量',
             SOTYPE: [
                 { value: '1', label: '本厂' },
                 { value: '2', label: '外购' },
@@ -319,6 +314,9 @@ export default {
 </script>
 
 <style>
+.row-order {
+  text-align: center;
+}
 .jiange {
   display: inline-block;
   margin: 5px 5px;

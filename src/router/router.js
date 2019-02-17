@@ -174,54 +174,54 @@ export const appRouter = [
       }
     ]
   }
-  // ,
-  // {
-  //   path: '/gmq',
-  //   name: 'gmq',
-  //   icon: 'logo-google',
-  //   title: 'GMQ',
-  //   component: Main,
-  //   children: [
-  //     {
-  //       path: 'bi',
-  //       name: 'gmq_bi',
-  //       title: 'BI',
-  //       icon: 'md-funnel',
-  //       component: () => import('@/views/gmq/bi.vue')
-  //     },
-  //     {
-  //       path: 'bi2',
-  //       name: 'gmq_bi2',
-  //       title: 'BI2',
-  //       icon: 'md-funnel',
-  //       component: () => import('@/views/gmq/components/bi2.vue')
-  //     }
-  //     // ,
-  //     // {
-  //     //   path: 'level3',
-  //     //   name: 'level3',
-  //     //   icon: 'md-funnel',
-  //     //   title: '2-3',
-  //     //   component: () => import('@/views/gmq/bi.vue')
-  //     // },
-  //     // {
-  //     //   path: 'leve2-0',
-  //     //   name: 'level2',
-  //     //   icon: 'md-funnel',
-  //     //   title: '2-2',
-  //     //   component: parentView,
-  //     //   children: [
-  //     //     {
-  //     //       path: 'leve2-1',
-  //     //       name: 'leve2',
-  //     //       icon: 'md-funnel',
-  //     //       title: '3-1',
-  //     //       component: () => import('@/views/gmq/bi.vue')
-  //     //     }
-  //     //   ]
-  //     // }
-  //   ]
-  // }
+  ,
+  {
+    path: '/gmq',
+    name: 'gmq',
+    icon: 'logo-google',
+    title: 'GMQ',
+    component: Main,
+    children: [
+      {
+        path: 'bi',
+        name: 'gmq_bi',
+        title: 'BI',
+        icon: 'md-funnel',
+        component: () => import('@/views/gmq/bi.vue')
+      },
+      {
+        path: 'bi2',
+        name: 'gmq_bi2',
+        title: 'BI2',
+        icon: 'md-funnel',
+        component: () => import('@/views/gmq/components/bi2.vue')
+      }
+      //     // ,
+      //     // {
+      //     //   path: 'level3',
+      //     //   name: 'level3',
+      //     //   icon: 'md-funnel',
+      //     //   title: '2-3',
+      //     //   component: () => import('@/views/gmq/bi.vue')
+      //     // },
+      //     // {
+      //     //   path: 'leve2-0',
+      //     //   name: 'level2',
+      //     //   icon: 'md-funnel',
+      //     //   title: '2-2',
+      //     //   component: parentView,
+      //     //   children: [
+      //     //     {
+      //     //       path: 'leve2-1',
+      //     //       name: 'leve2',
+      //     //       icon: 'md-funnel',
+      //     //       title: '3-1',
+      //     //       component: () => import('@/views/gmq/bi.vue')
+      //     //     }
+      //     //   ]
+      //     // }
+    ]
+  }
   // ,
   // {
   //   path: '/international',

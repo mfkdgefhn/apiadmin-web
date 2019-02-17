@@ -5,10 +5,11 @@
       <Card style="min-width:600px;">
         <div>
           <!-- 来源 -->
-          <div v-if="isSotype"
-               class="jiange">
+          <div class="jiange"
+               v-if="isSotype">
             <span>来源：</span>
             <i-select :model.sync="model1"
+                      ref="sotype"
                       style="width:90px"
                       @on-change="setSotype"
                       placeholder="默认本厂">
@@ -21,13 +22,14 @@
           </div>
 
           <!-- 品类 -->
-          <div v-if="isCategory"
-               class="jiange">
+          <div class="jiange"
+               v-if="isCategory">
             <span>品类：</span>
             <i-select :model.sync="model2"
                       clearable
                       multiple
                       style="width:110px"
+                      @on-change="setSotype"
                       placeholder="默认全部">
               <i-option v-for="item in model2"
                         :value="item.value"
@@ -38,11 +40,12 @@
           </div>
 
           <!-- 客户属性 -->
-          <div v-if="isCustomer"
-               class="jiange">
+          <div class="jiange"
+               v-if="isCustomer">
             <span>客户属性：</span>
             <i-select :model.sync="model3"
                       style="width:90px"
+                      @on-change="setSotype"
                       placeholder="默认全国">
               <i-option v-for="item in model3"
                         :value="item.value"
@@ -53,11 +56,12 @@
           </div>
 
           <!-- 客户 -->
-          <div v-if="isCustomer1"
-               class="jiange">
+          <div class="jiange"
+               v-if="isCustomer1">
             <span>客户：</span>
             <i-select :model.sync="model4"
                       style="width:90px"
+                      @on-change="setSotype"
                       placeholder="默认全部">
               <i-option v-for="item in model4"
                         :value="item.value"
@@ -68,8 +72,8 @@
           </div>
 
           <!-- 日期 -->
-          <div v-if="isData"
-               class="jiange">
+          <div class="jiange"
+               v-if="isData">
             <i-switch size="large"
                       v-model="showDate">
               <span slot="open">截止</span>
@@ -96,8 +100,8 @@
           </div>
 
           <!-- 排序 -->
-          <div v-if="isOrder"
-               class="jiange">
+          <div class="jiange"
+               v-if="isOrder">
             <span>排序：</span>
             <i-select :model.sync="model5"
                       style="width:90px"
@@ -111,8 +115,8 @@
           </div>
 
           <!-- <span class="jiange">模糊搜索：</span> -->
-          <div v-if="isSelect"
-               class="jiange">
+          <div class="jiange"
+               v-if="isSelect">
             <Input v-model="value14"
                    placeholder="模糊搜索款号"
                    clearable
@@ -298,9 +302,7 @@ export default {
         },
         setTime () {
             this.vJzdate = this.$moment().subtract(1, 'days').format('YYYYMMDD');
-            const start = this.$moment().subtract(7, 'days').format('YYYYMMDD');
-            const end = this.$moment().subtract(1, 'days').format('YYYYMMDD');
-            this.vQJdate = [start, end];
+            this.vQJdate = this.setQjvalue;
         },
         setJzTime (data) {
             // eslint-disable-next-line no-console
@@ -314,6 +316,15 @@ export default {
         }
     },
     computed: {
+        setQjvalue () {
+            // const end = new Date();
+            // const start = new Date();
+            // start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+            // return [start, end];
+            const start = this.$moment().subtract(7, 'days').format('YYYYMMDD');
+            const end = this.$moment().subtract(1, 'days').format('YYYYMMDD');
+            return [start, end];
+        }
     }
 };
 </script>

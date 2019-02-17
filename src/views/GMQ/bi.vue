@@ -106,8 +106,6 @@
     <Modal v-model="modal11"
            footer-hide
            scrollable>
-      <!-- fullscreen -->
-      <!-- title="Fullscreen Modal" -->
       <bi2></bi2>
     </Modal>
 

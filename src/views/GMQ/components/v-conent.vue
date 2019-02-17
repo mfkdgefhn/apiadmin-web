@@ -1,6 +1,6 @@
 <template>
   <div>
-    sds
+    {{conent}}
   </div>
 </template>
 
@@ -10,6 +10,11 @@ export default {
         return {
 
         };
+    },
+    props: {
+        conent: {
+            type: String
+        }
     }
 };
 </script>

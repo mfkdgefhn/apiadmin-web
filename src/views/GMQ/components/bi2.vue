@@ -10,7 +10,8 @@
                   :isData="item.isData"
                   :isOrder="item.isOrder"
                   :isSelect="item.isSelect"
-                  :isSotype="item.isSotype"></v-header>
+                  :isSotype="item.isSotype"
+                  style="min-width:770px"></v-header>
         <v-conent class="conents"
                   :conent="item.label"></v-conent>
       </TabPane>
